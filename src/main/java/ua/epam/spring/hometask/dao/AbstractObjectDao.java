@@ -28,7 +28,7 @@ public abstract class AbstractObjectDao<T extends DomainObject> implements Objec
 	}
 	
 	private boolean isIdSet(T object) {
-		return object.getId() == 0;
+		return object.getId() == null;
 	}
 
 	private void addId(final T object) {
