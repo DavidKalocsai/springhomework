@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
 
+import ua.epam.spring.hometask.dao.event.EventDao;
 import ua.epam.spring.hometask.dao.id.IdGenerator;
 import ua.epam.spring.hometask.domain.Event;
 

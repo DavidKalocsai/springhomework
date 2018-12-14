@@ -8,10 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import ua.epam.spring.hometask.dao.ObjectDao;
-import ua.epam.spring.hometask.dao.UserDao;
+import ua.epam.spring.hometask.dao.common.ObjectDao;
+import ua.epam.spring.hometask.dao.user.UserDao;
 import ua.epam.spring.hometask.domain.User;
-import ua.epam.spring.hometask.service.impl.DefaultUserService;
+import ua.epam.spring.hometask.service.user.DefaultUserService;
 
 public class DefaultUserServiceTest {
 	private static final Long ID_1 = 1L;

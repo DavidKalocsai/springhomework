@@ -8,10 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import ua.epam.spring.hometask.dao.EventDao;
-import ua.epam.spring.hometask.dao.ObjectDao;
+import ua.epam.spring.hometask.dao.common.ObjectDao;
+import ua.epam.spring.hometask.dao.event.EventDao;
 import ua.epam.spring.hometask.domain.Event;
-import ua.epam.spring.hometask.service.impl.DefaultEventService;
+import ua.epam.spring.hometask.service.event.DefaultEventService;
 
 public class DefaultEventServiceTest {
 	private static final Long ID_1 = 1L;

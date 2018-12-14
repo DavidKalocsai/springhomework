@@ -1,11 +1,10 @@
-package ua.epam.spring.hometask.service.impl;
+package ua.epam.spring.hometask.service.event;
 
 import java.util.Collection;
 import java.util.Optional;
 
-import ua.epam.spring.hometask.dao.ObjectDao;
+import ua.epam.spring.hometask.dao.common.ObjectDao;
 import ua.epam.spring.hometask.domain.Event;
-import ua.epam.spring.hometask.service.EventService;
 
 public class DefaultEventService implements EventService {
 	private ObjectDao<Event> eventDao;

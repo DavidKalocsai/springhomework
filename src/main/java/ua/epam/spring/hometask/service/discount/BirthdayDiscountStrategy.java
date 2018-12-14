@@ -6,6 +6,9 @@ import java.time.Period;
 
 import ua.epam.spring.hometask.domain.DiscountProperties;
 
+/**
+ * User gets discount if user has birthday within given days of air date.
+ */
 public class BirthdayDiscountStrategy implements DiscountStrategy {
 	private final byte discount;
 	private final int discountActivePeriodInDays;
@@ -25,7 +28,7 @@ public class BirthdayDiscountStrategy implements DiscountStrategy {
 	private boolean isBirthDayDiscountActive(final LocalDate birthDay, final LocalDateTime airDate) {
 		boolean discountActive = false;
 		if (birthDay != null && airDate != null) {
-			long days =  Period.between(getUserBirthDayInCurrentYear(birthDay, airDate), airDate.toLocalDate()).getDays();
+			final long days =  Period.between(getUserBirthDayInCurrentYear(birthDay, airDate), airDate.toLocalDate()).getDays();
 			discountActive = days <= discountActivePeriodInDays;
 		}
 		return discountActive;		

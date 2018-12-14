@@ -1,11 +1,10 @@
-package ua.epam.spring.hometask.service.impl;
+package ua.epam.spring.hometask.service.user;
 
 import java.util.Collection;
 import java.util.Optional;
 
-import ua.epam.spring.hometask.dao.ObjectDao;
+import ua.epam.spring.hometask.dao.common.ObjectDao;
 import ua.epam.spring.hometask.domain.User;
-import ua.epam.spring.hometask.service.UserService;
 
 public class DefaultUserService implements UserService {
 	private ObjectDao<User> userDao;

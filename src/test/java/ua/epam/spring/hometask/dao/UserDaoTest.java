@@ -9,6 +9,7 @@ import org.mockito.Matchers;
 import org.mockito.Mockito;
 
 import ua.epam.spring.hometask.dao.id.IdGenerator;
+import ua.epam.spring.hometask.dao.user.UserDao;
 import ua.epam.spring.hometask.domain.User;
 
 public class UserDaoTest {

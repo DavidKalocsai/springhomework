@@ -1,4 +1,4 @@
-package ua.epam.spring.hometask.service;
+package ua.epam.spring.hometask.service.discount;
 
 import javax.annotation.Nullable;
 

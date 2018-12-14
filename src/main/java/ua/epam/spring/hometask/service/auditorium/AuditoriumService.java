@@ -1,4 +1,4 @@
-package ua.epam.spring.hometask.service;
+package ua.epam.spring.hometask.service.auditorium;
 
 import java.util.Set;
 
