@@ -6,7 +6,7 @@ public class DiscountProperties {
 	final User user;
 	final Event event;
 	final LocalDateTime airDateTime;
-	final int numberOfTickets;
+	final long numberOfTickets;
 	
 	private DiscountProperties(final DiscountPropertiesBuilder builder) {
 		user = builder.user;
@@ -27,30 +27,34 @@ public class DiscountProperties {
 		return airDateTime;
 	}
 
-	public int getNumberOfTickets() {
+	public long getNumberOfTickets() {
 		return numberOfTickets;
 	}
 
-	public class DiscountPropertiesBuilder {
+	public static class DiscountPropertiesBuilder {
 		private User user;
 		private Event event;
 		private LocalDateTime airDateTime;
-		private int numberOfTickets;
+		private long numberOfTickets;
 		
-		public void buildWithUser(final User user) {
+		public DiscountPropertiesBuilder buildWithUser(final User user) {
 			this.user = user;
+			return this;
 		}
 		
-		public void buildWithEvent(final Event event) {
+		public DiscountPropertiesBuilder buildWithEvent(final Event event) {
 			this.event = event;
+			return this;
 		}
 		
-		public void buildWithAirDateTime(final LocalDateTime airDateTime) {
+		public DiscountPropertiesBuilder buildWithAirDateTime(final LocalDateTime airDateTime) {
 			this.airDateTime = airDateTime;
+			return this;
 		}
 		
-		public void buildWithUser(final int numberOfTickets) {
+		public DiscountPropertiesBuilder buildWithTickets(final long numberOfTickets) {
 			this.numberOfTickets = numberOfTickets;
+			return this;
 		}
 		
 		public DiscountProperties build() {

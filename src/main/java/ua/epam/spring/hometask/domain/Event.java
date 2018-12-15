@@ -3,10 +3,8 @@ package ua.epam.spring.hometask.domain;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.NavigableMap;
-import java.util.NavigableSet;
 import java.util.Objects;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 /**
  * @author Yuriy_Tkach
@@ -14,8 +12,6 @@ import java.util.TreeSet;
 public class Event extends DomainObject {
 
     private String name;
-
-    private NavigableSet<LocalDateTime> airDates = new TreeSet<>();
 
     private double basePrice;
 
@@ -35,7 +31,7 @@ public class Event extends DomainObject {
      *         not aired on that date
      */
     public boolean assignAuditorium(LocalDateTime dateTime, Auditorium auditorium) {
-        if (airDates.contains(dateTime)) {
+        if (auditoriums.containsKey(dateTime)) {
             auditoriums.put(dateTime, auditorium);
             return true;
         } else {
@@ -56,36 +52,6 @@ public class Event extends DomainObject {
     }
 
     /**
-     * Add date and time of event air
-     * 
-     * @param dateTime
-     *            Date and time to add
-     * @return <code>true</code> if successful, <code>false</code> if already
-     *         there
-     */
-    public boolean addAirDateTime(LocalDateTime dateTime) {
-        return airDates.add(dateTime);
-    }
-
-    /**
-     * Adding date and time of event air and assigning auditorium to that
-     * 
-     * @param dateTime
-     *            Date and time to add
-     * @param auditorium
-     *            Auditorium to add if success in date time add
-     * @return <code>true</code> if successful, <code>false</code> if already
-     *         there
-     */
-    public boolean addAirDateTime(LocalDateTime dateTime, Auditorium auditorium) {
-        boolean result = airDates.add(dateTime);
-        if (result) {
-            auditoriums.put(dateTime, auditorium);
-        }
-        return result;
-    }
-
-    /**
      * Removes the date and time of event air. If auditorium was assigned to
      * that date and time - the assignment is also removed
      * 
@@ -94,11 +60,7 @@ public class Event extends DomainObject {
      * @return <code>true</code> if successful, <code>false</code> if not there
      */
     public boolean removeAirDateTime(LocalDateTime dateTime) {
-        boolean result = airDates.remove(dateTime);
-        if (result) {
-            auditoriums.remove(dateTime);
-        }
-        return result;
+        return auditoriums.remove(dateTime) != null;
     }
 
     /**
@@ -109,7 +71,7 @@ public class Event extends DomainObject {
      * @return <code>true</code> event airs on that date and time
      */
     public boolean airsOnDateTime(LocalDateTime dateTime) {
-        return airDates.stream().anyMatch(dt -> dt.equals(dateTime));
+        return auditoriums.keySet().stream().anyMatch(dt -> dt.equals(dateTime));
     }
 
     /**
@@ -120,7 +82,7 @@ public class Event extends DomainObject {
      * @return <code>true</code> event airs on that date
      */
     public boolean airsOnDate(LocalDate date) {
-        return airDates.stream().anyMatch(dt -> dt.toLocalDate().equals(date));
+        return auditoriums.keySet().stream().anyMatch(dt -> dt.toLocalDate().equals(date));
     }
 
     /**
@@ -134,8 +96,19 @@ public class Event extends DomainObject {
      * @return <code>true</code> event airs on dates
      */
     public boolean airsOnDates(LocalDate from, LocalDate to) {
-        return airDates.stream()
+        return auditoriums.keySet().stream()
                 .anyMatch(dt -> dt.toLocalDate().compareTo(from) >= 0 && dt.toLocalDate().compareTo(to) <= 0);
+    }
+    
+    /**
+     * Get auditorium of given date time.
+     * 
+     * @param dateTime
+     *            Date and time to check
+     * @return {@link Auditorium}
+     */
+    public Auditorium getEventAuditorium(LocalDateTime dateTime) {
+        	return auditoriums.get(dateTime);
     }
 
     public String getName() {
@@ -144,14 +117,6 @@ public class Event extends DomainObject {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public NavigableSet<LocalDateTime> getAirDates() {
-        return airDates;
-    }
-
-    public void setAirDates(NavigableSet<LocalDateTime> airDates) {
-        this.airDates = airDates;
     }
 
     public double getBasePrice() {
