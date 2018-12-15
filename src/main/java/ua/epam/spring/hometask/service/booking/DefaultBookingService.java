@@ -1,4 +1,4 @@
-package ua.epam.spring.hometask.service;
+package ua.epam.spring.hometask.service.booking;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -13,7 +13,7 @@ import ua.epam.spring.hometask.domain.User;
 /**
  * @author Yuriy_Tkach
  */
-public interface BookingService {
+public class DefaultBookingService implements BookingService {
 
     /**
      * Getting price when buying all supplied seats for particular event
@@ -32,7 +32,7 @@ public interface BookingService {
      */
     public double getTicketsPrice(@Nonnull Event event, @Nonnull LocalDateTime dateTime, @Nullable User user,
             @Nonnull Set<Long> seats);
-
+ 
     /**
      * Books tickets in internal system. If user is not
      * <code>null</code> in a ticket then booked tickets are saved with it

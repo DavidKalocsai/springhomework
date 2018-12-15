@@ -5,11 +5,8 @@ import java.util.Collection;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Matchers;
-import org.mockito.Mockito;
 
 import ua.epam.spring.hometask.dao.event.EventDao;
-import ua.epam.spring.hometask.dao.id.IdGenerator;
 import ua.epam.spring.hometask.domain.Event;
 
 public class EventDaoTest {
@@ -18,27 +15,11 @@ public class EventDaoTest {
 	private static final Long ID_2 = 2L;
 	private static final String NAME_2 = "name_2";
 	
-	private IdGenerator idGenerator;
-	
 	private EventDao dao;
 	
 	@Before
 	public void setUp() {
-		idGenerator = Mockito.mock(IdGenerator.class);
-		dao = new EventDao(idGenerator);
-		Mockito.when(idGenerator.generateId(Matchers.anyCollection())).thenReturn(ID);
-	}
-	
-	@Test
-	public void shouldGenerateIdForNewEventWithoudIdWhenSaveCalled() {
-		// GIVEN
-		
-		// WHEN
-		dao.save(createEvent(null, NAME));
-		final Event savedEvent = dao.getById(ID);
-		// THEN
-		Assert.assertEquals(savedEvent.getName(), NAME);
-		Assert.assertEquals(savedEvent.getId(), ID);
+		dao = new EventDao();
 	}
 	
 	@Test
@@ -100,5 +81,4 @@ public class EventDaoTest {
 		event.setName(name);
 		return event;
 	}
-
 }

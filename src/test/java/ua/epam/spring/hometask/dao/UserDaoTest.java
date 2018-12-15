@@ -5,10 +5,7 @@ import java.util.Collection;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Matchers;
-import org.mockito.Mockito;
 
-import ua.epam.spring.hometask.dao.id.IdGenerator;
 import ua.epam.spring.hometask.dao.user.UserDao;
 import ua.epam.spring.hometask.domain.User;
 
@@ -18,27 +15,11 @@ public class UserDaoTest {
 	private static final Long ID_2 = 2L;
 	private static final String NAME_2 = "name_2";
 	
-	private IdGenerator idGenerator;
-	
 	private UserDao dao;
 	
 	@Before
 	public void setUp() {
-		idGenerator = Mockito.mock(IdGenerator.class);
-		dao = new UserDao(idGenerator);
-		Mockito.when(idGenerator.generateId(Matchers.anyCollection())).thenReturn(ID);
-	}
-	
-	@Test
-	public void shouldGenerateIdForNewUserWithoudIdWhenSaveCalled() {
-		// GIVEN
-		
-		// WHEN
-		dao.save(createUser(null, NAME));
-		final User savedUser = dao.getById(ID);
-		// THEN
-		Assert.assertEquals(savedUser.getFirstName(), NAME);
-		Assert.assertEquals(savedUser.getId(), ID);
+		dao = new UserDao();
 	}
 	
 	@Test

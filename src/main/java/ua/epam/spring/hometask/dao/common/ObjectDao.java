@@ -4,6 +4,10 @@ import java.util.Collection;
 
 import javax.annotation.Nonnull;
 
+/**
+ * Interface of the fake dao.
+ * @param <T> type of the object that will be stored in the fake dao.
+ */
 public interface ObjectDao<T> {
     /**
      * Saving new object to storage or updating existing one
